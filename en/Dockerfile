@@ -8,7 +8,7 @@ ADD http://search.maven.org/remotecontent?filepath=eus/ixa/ixa-pipe-chunk/1.1.1/
 ADD http://search.maven.org/remotecontent?filepath=eus/ixa/ixa-pipe-doc/0.0.3/ixa-pipe-doc-0.0.3-exec.jar ixa-pipe-doc-exec.jar
 COPY en-docker-autorun.sh en-docker-autorun.sh
 
-RUN chmod 644 en-docker-autorun.sh
+RUN chmod u+x en-docker-autorun.sh
 
 RUN wget -c http://ixa2.si.ehu.es/ixa-pipes/models/en-ixa-pipes-models-1.1.1.tar.gz && \
     tar xvzf en-ixa-pipes-models-1.1.1.tar.gz && \

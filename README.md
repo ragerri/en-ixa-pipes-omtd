@@ -1,2 +1,2 @@
-# en-ixa-pipes-omtd
+# ixa-pipes-omtd
 IXA pipes docker for the OpenMinTeD platform

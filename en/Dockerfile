@@ -22,4 +22,4 @@ RUN mv en-pos-perceptron-autodict01-conll09.bin pos.bin && \
     mv en-perceptron-conll00.bin chunk.bin && \
     mv en-doc-maxent-large-movies.bin doc.bin
 
-CMD ["en-docker-autorun.sh"]
+CMD ["/en-docker-autorun.sh"]

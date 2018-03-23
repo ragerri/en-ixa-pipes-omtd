@@ -11,5 +11,4 @@ To get the docker image from docker hub:
 
 To run the docker image for any language:
 
-````cat ~/javacode/examples/$file.raw.naf | docker run -i ragerri/en-ixa-pipes-omtd:0.0.1
-````
+````cat ~/javacode/examples/$file.raw.naf | docker run -i ragerri/en-ixa-pipes-omtd:0.0.1````

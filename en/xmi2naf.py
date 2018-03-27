@@ -13,6 +13,7 @@ def qname(ns, key, name):
 def create_naf(sofatext, sofaid, xminame):
     naf = ET.Element("NAF")
     naf.set('version', 'v1.naf')
+    naf.set('{http://www.w3.org/XML/1998/namespace}lang', 'en')
     nafHeader = ET.SubElement(naf, 'nafHeader')
     linguisticProcessors = ET.SubElement(nafHeader, 'linguisticProcessors')
     linguisticProcessors.set('layer', 'xmi')

@@ -80,16 +80,11 @@ class Parse_state(object):
             e = max(e, ee)
         return (b, e)
 
-def parse_naf_fh(fh):
-    # NOTE: this does not work if the default coding system of terminal is not UTF8
-    tree = ET.parse(fh)
-    return tree.getroot()
-
 def xmi_info(naf):
-
+    '''Return an XMI doxument given an input NAF'''
     def xtract_xmi_info(naf):
         xmilp = naf.xpath('./nafHeader/linguisticProcessors[@layer="xmi"]/lp')
-        if xmilp is None:
+        if len(xmilp) == 0:
             return (None, None)
         if xmilp[0] is None:
             return (None, None)
@@ -102,13 +97,16 @@ def xmi_info(naf):
         return (xminame, sofaid)
 
     def simple_xmi(naf):
-        r = get_raw(naf)
+        try:
+            r = get_raw(naf)
+        except:
+            warnings.warn("Can not parse input NAF")
+            exit(1)
         pstate = Parse_state(r)
         out = ET.Element(pstate.qname('xmi', 'XMI'), nsmap = pstate.get_nsmap())
         casnull(pstate, out)
         sofa(pstate, out)
-        otree = ET.ElementTree(out)
-        return otree, pstate
+        return out, pstate
 
 
     def parse_xmi(name):
@@ -167,6 +165,8 @@ def get_raw(tree):
 
 def tok(tree, pstate, out):
     text = tree.find("text")
+    if text is None:
+        return
     for wf in text.findall("wf"):
         b = int(wf.get("offset"))
         e = b + int(wf.get("length"))
@@ -179,6 +179,8 @@ def tok(tree, pstate, out):
 
 def pos(tree, pstate, out):
     terms = tree.find("terms")
+    if terms is None:
+        return
     for term in terms.findall("term"):
         lemma = term.get("lemma")
         pos = term.get("pos")
@@ -197,6 +199,8 @@ def pos(tree, pstate, out):
 
 def ner(tree, pstate, out):
     entities = tree.find("entities")
+    if entities is None:
+        return
     for entity in entities.findall("entity"):
         etype = entity.get("type")
         tcas = ET.SubElement(out, pstate.qname('ixatypes', 'entity'))
@@ -210,6 +214,8 @@ def ner(tree, pstate, out):
 
 def chunk(tree, pstate, out):
     chunks = tree.find("chunks")
+    if chunks is None:
+        return
     for chunk in chunks.findall("chunk"):
         phrase = chunk.get("phrase")
         tcas = ET.SubElement(out, pstate.qname('ixatypes', 'chunk'))
@@ -224,6 +230,8 @@ def chunk(tree, pstate, out):
 def doc(tree, pstate, out):
     e = str(len(pstate.raw))
     topics = tree.find("topics")
+    if topics is None:
+        return
     for topic in topics.findall("topic"):
         tcas = ET.SubElement(out, pstate.qname('ixatypes', 'topic'))
         tcas.set(pstate.qname('xmi', 'id'), pstate.next_id())
@@ -251,26 +259,28 @@ def sofa(pstate, out):
     sofa.set('sofaString', pstate.raw)
 
 def view(pstate, out):
+    view_ids = pstate.viewIds
+    if len(view_ids) == 0:
+        return
     view = ET.SubElement(out, pstate.qname('cas', 'View'))
     view.set('sofa', pstate.sofaId)
-    view.set('members', " ".join(pstate.viewIds))
+    view.set('members', " ".join(view_ids))
 
 def main():
     try:
-        #naftree = ET.parse(sys.stdin)
-        naftree = ET.parse("obama.xml")
+        naftree = ET.parse(sys.stdin)
         naf = naftree.getroot()
-        out, pstate = xmi_info(naf)
+        oroot, pstate = xmi_info(naf)
         # add layers
-        tok(naf, pstate, out)
-        pos(naf, pstate, out)
-        ner(naf, pstate, out)
-        chunk(naf, pstate, out)
-        doc(naf, pstate, out)
-        view(pstate, out)
+        tok(naf, pstate, oroot)
+        pos(naf, pstate, oroot)
+        ner(naf, pstate, oroot)
+        chunk(naf, pstate, oroot)
+        doc(naf, pstate, oroot)
+        view(pstate, oroot)
 
         # write
-        a = ET.tostring(out, encoding="utf-8")
+        a = ET.tostring(oroot, encoding="utf-8")
         print(a.decode("utf-8"))
     except Exception as e:
         msg = "Warning: an exception occured: {}".format(e)

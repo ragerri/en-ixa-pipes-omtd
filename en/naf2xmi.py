@@ -2,7 +2,7 @@
 
 import sys
 import warnings
-import xml.etree.ElementTree as ET
+from lxml import etree as ET
 
 class Namespaces(object):
     def register(self, alias, ns):
@@ -197,7 +197,8 @@ def main():
 
         # write
         otree = ET.ElementTree(out)
-        otree.write(sys.stdout, encoding = "unicode")
+        a = ET.tostring(out, encoding="utf-8")
+        print(a.decode("utf-8"))
     except Exception as e:
         msg = "Warning: an exception occured: {}".format(e)
         warnings.warn(msg)

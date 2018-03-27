@@ -15,7 +15,7 @@ def create_naf(sofatext, sofaid, xminame):
     naf.set('version', 'v1.naf')
     nafHeader = ET.SubElement(naf, 'nafHeader')
     linguisticProcessors = ET.SubElement(nafHeader, 'linguisticProcessors')
-    linguisticProcessors.set('layer', 'raw')
+    linguisticProcessors.set('layer', 'xmi')
     lp = ET.SubElement(linguisticProcessors, 'lp')
     lp.set('name', xminame)
     lp.set('version', sofaid)

@@ -1,32 +1,48 @@
 #!/usr/bin/env python3
 
 import sys
+import os
 import warnings
 from lxml import etree as ET
 
 class Namespaces(object):
-    def register(self, alias, ns):
-        ET.register_namespace(alias, ns)
-        self.xmlns[alias] = ns
     def get(self, alias):
+        if alias in self.k2k:
+            alias = self.k2k[alias]
         return self.xmlns[alias]
-    def __init__(self):
-        self.xmlns = dict()
-        self.register('cas', "http:///uima/cas.ecore")
-        self.register('xmi', "http://www.omg.org/XMI")
-        self.register('tcas', "http:///uima/tcas.ecore")
-        self.register('ixatypes', "http:///ixa/ehu.eus/ixa-pipes/types.ecore")
+    def __init__(self, prevns = dict()):
+        self.xmlns = prevns
+        val2k = { v:k for k,v in prevns.items() }
+        self.k2k = dict()
+        newns_list = [ ['cas', "http:///uima/cas.ecore"],
+                       ['xmi', "http://www.omg.org/XMI"],
+                       ['tcas', "http:///uima/tcas.ecore"],
+                       ['ixatypes', "http:///ixa/ehu.eus/ixa-pipes/types.ecore"] ]
+        for nk, nv in newns_list:
+            if nv in val2k:
+                if nk != val2k[nv]:
+                    self.k2k[nk] = val2k[nv]
+            else:
+                self.xmlns[nk] = nv
+    def get_map(self):
+        res = self.xmlns.copy()
+        for k in self.k2k:
+            res[k] = res[k2k[k]]
+        return res
 
 class Parse_state(object):
-    def __init__(self, raw):
+    def __init__(self, raw, ns = dict()):
         self.sofaId = "1"
         self.raw = raw
         self.omaps = { 'w' : dict(), # tokens
                        't' : dict()  # terms
         }
-        self.ns = Namespaces()
+        self.ns = Namespaces(ns)
         self.viewIds = []
         self.id = 0
+
+    def get_nsmap(self):
+        return self.ns.get_map()
 
     def next_id(self, updateView = True):
         res = str(self.id)
@@ -68,6 +84,67 @@ def parse_naf_fh(fh):
     # NOTE: this does not work if the default coding system of terminal is not UTF8
     tree = ET.parse(fh)
     return tree.getroot()
+
+def xmi_info(naf):
+
+    def xtract_xmi_info(naf):
+        xmilp = naf.xpath('./nafHeader/linguisticProcessors[@layer="xmi"]/lp')
+        if xmilp is None:
+            return (None, None)
+        if xmilp[0] is None:
+            return (None, None)
+        xminame = xmilp[0].get("name")
+        if not os.path.exists(xminame):
+            return (None, None)
+        sofaid = xmilp[0].get("version")
+        if sofaid is None:
+            sofaid = "-1"
+        return (xminame, sofaid)
+
+    def simple_xmi(naf):
+        r = get_raw(naf)
+        pstate = Parse_state(r)
+        out = ET.Element(pstate.qname('xmi', 'XMI'), nsmap = pstate.get_nsmap())
+        casnull(pstate, out)
+        sofa(pstate, out)
+        otree = ET.ElementTree(out)
+        return otree, pstate
+
+
+    def parse_xmi(name):
+        ''' parse XMI and include new namespaces in root element'''
+        new_ns = Namespaces().get_map()
+        tree = ET.parse(name)
+        root = tree.getroot()
+        for k,v in root.nsmap.items():
+            if k not in new_ns:
+                new_ns[k] = v
+        new_root = ET.Element(root.tag, nsmap = new_ns)
+        new_root[:] = root[:]
+        xid = 0
+        if 'xmi' in new_ns:
+            aidtag = "{{{}}}{}".format(new_ns['xmi'], 'id')
+            # {http://www.omg.org/XMI}id
+            for item in new_root.iterdescendants():
+                xxid = item.get(aidtag)
+                if xxid is not None:
+                    xid = max(xid, int(xxid))
+        return new_root, xid
+
+    xminame, sofaid = xtract_xmi_info(naf)
+    if xminame is None:
+        return simple_xmi(naf)
+    xmiroot, xid = parse_xmi(xminame)
+    ns = xmiroot.nsmap
+    sofatag = "{{{}}}{}".format(ns['cas'], 'Sofa')
+    sofaelem = xmiroot.find(sofatag)
+    raw = ""
+    if sofaelem is not None:
+        raw = sofaelem.get('sofaString')
+    pstate = Parse_state(raw, ns)
+    pstate.sofaId = sofaid
+    pstate.id = xid + 1
+    return xmiroot, pstate
 
 def targets(elem):
     targets = []
@@ -180,14 +257,11 @@ def view(pstate, out):
 
 def main():
     try:
-        naf = parse_naf_fh(sys.stdin)
-        r = get_raw(naf)
-        pstate = Parse_state(r)
-        out = ET.Element(pstate.qname('xmi', 'XMI'))
-
+        #naftree = ET.parse(sys.stdin)
+        naftree = ET.parse("obama.xml")
+        naf = naftree.getroot()
+        out, pstate = xmi_info(naf)
         # add layers
-        casnull(pstate, out)
-        sofa(pstate, out)
         tok(naf, pstate, out)
         pos(naf, pstate, out)
         ner(naf, pstate, out)
@@ -196,7 +270,6 @@ def main():
         view(pstate, out)
 
         # write
-        otree = ET.ElementTree(out)
         a = ET.tostring(out, encoding="utf-8")
         print(a.decode("utf-8"))
     except Exception as e:

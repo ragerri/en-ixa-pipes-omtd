@@ -39,6 +39,7 @@ class Parse_state(object):
         }
         self.ns = Namespaces(ns)
         self.viewIds = []
+        self.tmpName = None
         self.id = 0
 
     def get_nsmap(self):
@@ -101,7 +102,7 @@ def xmi_info(naf):
             r = get_raw(naf)
         except:
             warnings.warn("Can not parse input NAF")
-            exit(1)
+            r = ""
         pstate = Parse_state(r)
         out = ET.Element(pstate.qname('xmi', 'XMI'), nsmap = pstate.get_nsmap())
         casnull(pstate, out)
@@ -142,6 +143,7 @@ def xmi_info(naf):
     pstate = Parse_state(raw, ns)
     pstate.sofaId = sofaid
     pstate.id = xid + 1
+    pstate.tmpName = xminame
     return xmiroot, pstate
 
 def targets(elem):
@@ -282,6 +284,8 @@ def main():
         # write
         a = ET.tostring(oroot, encoding="utf-8")
         print(a.decode("utf-8"))
+        if pstate.tmpName is not None:
+            os.remove(pstate.tmpName)
     except Exception as e:
         msg = "Warning: an exception occured: {}".format(e)
         warnings.warn(msg)

@@ -18,9 +18,8 @@ in the directory for input and output.
 
 ````docker run -v /host_path:/mnt/corpus -i ragerri/en-ixa-pipes-omtd:0.0.1 en-docker-autorun.sh --input corpus/input.xmi --output corpus/output.xmi````
 
-If you want the output file to be owned by a specific user (by default, they
-are owned by root), use the `-u` switch when calling the docker:
+The output of the process will be in `/host_path/output.xmi`. By default, this file will be owned by `root`. If you want the output file to be owned by a specific user, use the `-u` switch when calling the docker:
 
 ````docker run -v /host_path:/corpus -i ragerri/en-ixa-pipes-omtd:0.0.1 -u 1000 en-docker-autorun.sh --input corpus/input.xmi --output corpus/output.xmi````
 
-here, the file will be created with user UID 1000.
+here, `/host_path/output.xmi` will be created with user UID 1000.

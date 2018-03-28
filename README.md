@@ -12,3 +12,15 @@ To get the docker image from docker hub:
 To run the docker image for any language:
 
 ````cat ~/javacode/examples/$file.raw.naf | docker run -i ragerri/en-ixa-pipes-omtd:0.0.1````
+
+You can also mount a directory in the host system, and then pass some files
+in the directory for input and output.
+
+````docker run -v /host_path:/mnt/corpus -i ragerri/en-ixa-pipes-omtd:0.0.1 en-docker-autorun.sh --input corpus/input.xmi --output corpus/output.xmi````
+
+If you want the output file to be owned by a specific user (by default, they
+are owned by root), use the `-u` switch when calling the docker:
+
+````docker run -v /host_path:/corpus -i ragerri/en-ixa-pipes-omtd:0.0.1 -u 1000 en-docker-autorun.sh --input corpus/input.xmi --output corpus/output.xmi````
+
+here, the file will be created with user UID 1000.

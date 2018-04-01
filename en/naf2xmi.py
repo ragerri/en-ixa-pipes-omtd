@@ -136,7 +136,13 @@ def xmi_info(naf):
     xmiroot, xid = parse_xmi(xminame)
     ns = xmiroot.nsmap
     sofatag = "{{{}}}{}".format(ns['cas'], 'Sofa')
-    sofaelem = xmiroot.find(sofatag)
+    sofaelem = None
+    new_ns = Namespaces().get_map()
+    for s in xmiroot.findall(sofatag):
+        if s.get("{{{}}}{}".format(new_ns['xmi'], 'id')) != sofaid:
+            continue
+        sofaelem = s
+        break
     raw = ""
     if sofaelem is not None:
         raw = sofaelem.get('sofaString')

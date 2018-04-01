@@ -24,33 +24,41 @@ def create_naf(sofatext, sofaid, xminame):
     raw.text = ET.CDATA(sofatext)
     return naf
 
+def search_text(xmi):
+    ns = xmi.nsmap.copy()
+    rawtext = ""
+    sofaid = "-1"
+    sofatag = qname(ns, 'cas', 'Sofa')
+    for sofa in xmi.findall(sofatag):
+        if sofa.get('sofaId') != '_initialView':
+            continue
+        id = sofa.get(qname(ns, 'xmi', 'id'))
+        if id is not None:
+            sofaid = id
+        rawtext = sofa.get('sofaString')
+        break
+    return rawtext, sofaid
+
+def emptyNAF():
+    naf = ET.Element("NAF")
+    naf.set('version', 'v1.naf')
+    return naf
+
 def main():
     try:
         tree = ET.parse(sys.stdin)
         xmi = tree.getroot()
-        ns = xmi.nsmap.copy()
-        rawtext = ""
-        sofaid = "-1"
-        sofatag = qname(ns, 'cas', 'Sofa')
-        if len(sofatag):
-            sofa = xmi.find(sofatag)
-            if sofa is not None:
-                #rawtext = sofa.get('sofaString').encode("utf-8")
-                id = sofa.get(qname(ns, 'xmi', 'id'))
-                if id is not None:
-                    sofaid = id
-                rawtext = sofa.get('sofaString')
+        rawtext, sofaid = search_text(xmi)
         xmiTemp = tempfile.NamedTemporaryFile(delete=False)
         tree.write(xmiTemp)
         naf = create_naf(rawtext, sofaid, xmiTemp.name)
-        #print(xmiTemp.name)
-        # write
-        a = ET.tostring(naf, encoding="utf-8")
-        print(a.decode("utf-8"))
-
     except Exception as e:
         msg = "Warning: an exception occured: {}".format(e)
         warnings.warn(msg)
-        raise
+        naf = emptyNAF()
+    #print(xmiTemp.name)
+    # write
+    a = ET.tostring(naf, encoding="utf-8")
+    print(a.decode("utf-8"))
 
 main()

@@ -86,11 +86,11 @@ ADD http://search.maven.org/remotecontent?filepath=eus/ixa/ixa-pipe-pos/1.5.2/ix
 ADD http://search.maven.org/remotecontent?filepath=eus/ixa/ixa-pipe-nerc/1.6.1/ixa-pipe-nerc-1.6.1-exec.jar ixa-pipe-nerc-exec.jar
 ADD http://search.maven.org/remotecontent?filepath=eus/ixa/ixa-pipe-chunk/1.1.1/ixa-pipe-chunk-1.1.1-exec.jar ixa-pipe-chunk-exec.jar
 ADD http://search.maven.org/remotecontent?filepath=eus/ixa/ixa-pipe-doc/0.0.3/ixa-pipe-doc-0.0.3-exec.jar ixa-pipe-doc-exec.jar
-COPY en-docker-autorun.sh en-docker-autorun.sh
+COPY en-ixa-pipes.sh en-ixa-pipes.sh
 COPY naf2xmi.py naf2xmi.py
 COPY xmi2naf.py xmi2naf.py
 
-RUN chmod u+x en-docker-autorun.sh
+RUN chmod u+x en-ixa-pipes.sh
 RUN chmod u+x naf2xmi.py
 RUN chmod u+x xmi2naf.py
 
@@ -106,4 +106,4 @@ RUN mv en-pos-perceptron-autodict01-conll09.bin pos.bin && \
     mv en-perceptron-conll00.bin chunk.bin && \
     mv en-doc-maxent-large-movies.bin doc.bin
 
-CMD ["/en-docker-autorun.sh"]
+CMD ["/en-ixa-pipes.sh"]

@@ -77,8 +77,6 @@ RUN apt-get -q -y update && \
 	apt-get upgrade -q -y && \
 	apt-get install -q -y python3-minimal python3-lxml wget
 
-RUN mkdir /corpus
-
 ##################### ixa-pipes #######################################
 
 ADD http://search.maven.org/remotecontent?filepath=eus/ixa/ixa-pipe-tok/1.8.5/ixa-pipe-tok-1.8.5-exec.jar ixa-pipe-tok-exec.jar
@@ -89,6 +87,7 @@ ADD http://search.maven.org/remotecontent?filepath=eus/ixa/ixa-pipe-doc/0.0.3/ix
 COPY en-ixa-pipes.sh en-ixa-pipes.sh
 COPY naf2xmi.py naf2xmi.py
 COPY xmi2naf.py xmi2naf.py
+COPY typesystem.xml typesystem.xml
 
 RUN chmod u+x en-ixa-pipes.sh
 RUN chmod u+x naf2xmi.py

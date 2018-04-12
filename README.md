@@ -9,17 +9,14 @@ To get the docker image from docker hub:
 
 ````docker pull ragerri/en-ixa-pipes-omtd:0.0.1````
 
-To run the docker image for any language:
+To run the docker image for any language, use the following command:
 
-````cat ~/javacode/examples/$file.raw.naf | docker run -i ragerri/en-ixa-pipes-omtd:0.0.1````
+````docker run -v <hostInputPath>:<containerInputPath> -v <hostOutputPath>:<containerOutputPath> -i ragerri/en-ixa-pipes-omtd:0.0.1 /en-ixa-pipes.sh --input <containerInputPath> --output <containerOutputPath>````
 
-You can also mount a directory in the host system, and then pass some files
-in the directory for input and output.
 
-````docker run -v /host_path:/mnt/corpus -i ragerri/en-ixa-pipes-omtd:0.0.1 en-docker-autorun.sh --input corpus/input.xmi --output corpus/output.xmi````
+it will take every XMI document in the `<hostInputPath>` directory and leave the processed output in `<hostOutputPath>`
 
-The output of the process will be in `/host_path/output.xmi`. By default, this file will be owned by `root`. If you want the output file to be owned by a specific user, use the `-u` switch when calling the docker:
+For example, if your input directory is `/home/user/corpus_in` and you want
+the output in `/home/user/corpus_out `, run the following command:
 
-````docker run -v /host_path:/corpus -i ragerri/en-ixa-pipes-omtd:0.0.1 -u 1000 en-docker-autorun.sh --input corpus/input.xmi --output corpus/output.xmi````
-
-here, `/host_path/output.xmi` will be created with user UID 1000.
+````docker run -v /home/user/corpus_in:/corpus_in -v /home/user/corpus_out:/corpus_out -i ragerri/en-ixa-pipes-omtd:0.0.1 /en-ixa-pipes.sh --input corpus_in --output corpus_out````

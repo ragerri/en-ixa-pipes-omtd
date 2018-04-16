@@ -17,7 +17,7 @@
       <ms:public>true</ms:public>
     </ms:identificationInfo>
     <ms:versionInfo>
-      <ms:version>0.1.0</ms:version>
+      <ms:version>0.1.1</ms:version>
     </ms:versionInfo>
     <ms:contactInfo>
     <ms:contactPoint>https://github.com/ragerri/ixa-pipes-omtd</ms:contactPoint>
@@ -37,7 +37,7 @@
     <ms:distributionInfos>
       <ms:componentDistributionInfo>
           <ms:componentDistributionForm>dockerImage</ms:componentDistributionForm>
-          <ms:distributionLocation>ragerri/en-ixa-pipes-omtd:0.1.0</ms:distributionLocation>
+          <ms:distributionLocation>ragerri/en-ixa-pipes-omtd:0.1.1</ms:distributionLocation>
         <ms:command>/en-ixa-pipes.sh</ms:command>
         <ms:operatingSystems>
           <ms:operatingSystem>linux</ms:operatingSystem>

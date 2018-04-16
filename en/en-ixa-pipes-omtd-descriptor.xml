@@ -84,7 +84,7 @@
       <ns0:componentDistributionInfo>
 	<ns0:componentDistributionForm>dockerImage
 	</ns0:componentDistributionForm>
-	<ns0:distributionLocation>ragerri/en-ixa-pipes-omtd:0.0.1
+	<ns0:distributionLocation>ragerri/en-ixa-pipes-omtd:0.1.0
 	</ns0:distributionLocation>
 	<ns0:command>/en-ixa-pipes.sh
 	</ns0:command>

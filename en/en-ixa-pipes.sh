@@ -45,8 +45,7 @@ fi
 
 if [ ! -d ${output} ]; then
         mkdir ${output}
-	echo "ERROR: --output must be a directory"
-	exit 1
+	echo "Creating --output directory"
 fi
 
 declare -a IFILES

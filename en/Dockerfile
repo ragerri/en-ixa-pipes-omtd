@@ -85,6 +85,7 @@ ADD http://search.maven.org/remotecontent?filepath=eus/ixa/ixa-pipe-nerc/1.6.1/i
 ADD http://search.maven.org/remotecontent?filepath=eus/ixa/ixa-pipe-chunk/1.1.1/ixa-pipe-chunk-1.1.1-exec.jar ixa-pipe-chunk-exec.jar
 ADD http://search.maven.org/remotecontent?filepath=eus/ixa/ixa-pipe-doc/0.0.3/ixa-pipe-doc-0.0.3-exec.jar ixa-pipe-doc-exec.jar
 COPY en-ixa-pipes.sh en-ixa-pipes.sh
+COPY en-ixa-pipes.sh /usr/bin/
 COPY naf2xmi.py naf2xmi.py
 COPY xmi2naf.py xmi2naf.py
 COPY typesystem.xml typesystem.xml

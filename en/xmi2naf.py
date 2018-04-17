@@ -30,8 +30,8 @@ def search_text(xmi):
     sofaid = "-1"
     sofatag = qname(ns, 'cas', 'Sofa')
     for sofa in xmi.findall(sofatag):
-        if sofa.get('sofaId') != '_initialView':
-            continue
+        #if sofa.get('sofaId') != '_InitialView':
+        #    continue
         id = sofa.get(qname(ns, 'xmi', 'id'))
         if id is not None:
             sofaid = id

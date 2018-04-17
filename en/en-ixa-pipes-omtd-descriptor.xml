@@ -4,78 +4,101 @@
     <ms:resourceType>component</ms:resourceType>
     <ms:identificationInfo>
       <ms:resourceNames>
-        <ms:resourceName>en-ixa-pipes-omtd</ms:resourceName>
+	<ms:resourceName>en-ixa-pipes-omtd</ms:resourceName>
       </ms:resourceNames>
       <ms:descriptions>
-        <ms:description>
+	<ms:description>
 	  IXA pipes for English. It provides tokenizer, POS tagger, lemmatizer, NER tagger, Chunking and Document Classification. It reads from an input folder containing XMI documents and outputs the added annotations in XMI format to an output directory.
-    </ms:description>
+	</ms:description>
       </ms:descriptions>
       <ms:resourceIdentifiers>
-        <ms:resourceIdentifier resourceIdentifierSchemeName="OMTD-docker">/en-ixa-pipes.sh</ms:resourceIdentifier>
+	<ms:resourceIdentifier resourceIdentifierSchemeName="OMTD-docker">en-ixa-pipes.sh</ms:resourceIdentifier>
       </ms:resourceIdentifiers>
       <ms:public>true</ms:public>
     </ms:identificationInfo>
     <ms:versionInfo>
-      <ms:version>0.1.1</ms:version>
+      <ms:version>0.1.3</ms:version>
     </ms:versionInfo>
     <ms:contactInfo>
-    <ms:contactPoint>https://github.com/ragerri/ixa-pipes-omtd</ms:contactPoint>
-    <ms:contactType>landingPage</ms:contactType>
+      <ms:contactPoint>https://github.com/ragerri/ixa-pipes-omtd</ms:contactPoint>
+      <ms:contactType>landingPage</ms:contactType>
       <ms:contactGroups>
-        <ms:contactGroup>
-          <ms:groupNames>
-            <ms:groupName>IXA NLP Group</ms:groupName>
-          </ms:groupNames>
-        </ms:contactGroup>
+	<ms:contactGroup>
+	  <ms:groupNames>
+	    <ms:groupName>IXA NLP Group</ms:groupName>
+	  </ms:groupNames>
+	</ms:contactGroup>
       </ms:contactGroups>
     </ms:contactInfo>
     <ms:application>false</ms:application>
     <ms:functionInfo>
-      <ms:function>http://w3id.org/meta-share/omtd-share/InformationExtraction</ms:function>
+      <ms:function>http://w3id.org/meta-share/omtd-share/Annotator</ms:function>
     </ms:functionInfo>
     <ms:distributionInfos>
       <ms:componentDistributionInfo>
-          <ms:componentDistributionForm>dockerImage</ms:componentDistributionForm>
-          <ms:distributionLocation>ragerri/en-ixa-pipes-omtd:0.1.1</ms:distributionLocation>
-        <ms:command>/en-ixa-pipes.sh</ms:command>
-        <ms:operatingSystems>
-          <ms:operatingSystem>linux</ms:operatingSystem>
-        </ms:operatingSystems>
+	<ms:componentDistributionForm>dockerImage</ms:componentDistributionForm>
+	<ms:distributionLocation>ragerri/en-ixa-pipes-omtd:0.1.3</ms:distributionLocation>
+	<ms:command>en-ixa-pipes.sh</ms:command>
+	<ms:operatingSystems>
+	  <ms:operatingSystem>linux</ms:operatingSystem>
+	</ms:operatingSystems>
       </ms:componentDistributionInfo>
     </ms:distributionInfos>
-        <ms:rightsInfo>
-          <ms:licenceInfos>
-            <ms:licenceInfo>
-              <ms:licence>Apache-2.0</ms:licence>
-            </ms:licenceInfo>
-          </ms:licenceInfos>
-          <ms:rightsStatement>openAccess</ms:rightsStatement>
-        </ms:rightsInfo>
+    <ms:rightsInfo>
+      <ms:licenceInfos>
+	<ms:licenceInfo>
+	  <ms:licence>Apache-2.0</ms:licence>
+	</ms:licenceInfo>
+      </ms:licenceInfos>
+      <ms:rightsStatement>openAccess</ms:rightsStatement>
+    </ms:rightsInfo>
     <ms:inputContentResourceInfo>
-        <ms:processingResourceType>corpus</ms:processingResourceType>
+      <ms:processingResourceType>corpus</ms:processingResourceType>
       <ms:dataFormats>
-        <ms:dataFormatInfo>
-          <ms:dataFormat>http://w3id.org/meta-share/omtd-share/Xmi</ms:dataFormat>
-        </ms:dataFormatInfo>
+	<ms:dataFormatInfo>
+	  <ms:dataFormat>http://w3id.org/meta-share/omtd-share/Xmi</ms:dataFormat>
+	</ms:dataFormatInfo>
       </ms:dataFormats>
       <ms:characterEncodings>
-        <ms:characterEncoding>UTF-8</ms:characterEncoding>
+	<ms:characterEncoding>UTF-8</ms:characterEncoding>
       </ms:characterEncodings>
       <ms:languages>
-        <ms:language>en</ms:language>
+	<ms:language>en</ms:language>
       </ms:languages>
     </ms:inputContentResourceInfo>
     <ms:outputResourceInfo>
-        <ms:processingResourceType>corpus</ms:processingResourceType>
+      <ms:processingResourceType>corpus</ms:processingResourceType>
       <ms:dataFormats>
-        <ms:dataFormatInfo>
-          <ms:dataFormat>http://w3id.org/meta-share/omtd-share/Xmi</ms:dataFormat>
-        </ms:dataFormatInfo>
+	<ms:dataFormatInfo>
+	  <ms:dataFormat>http://w3id.org/meta-share/omtd-share/Xmi</ms:dataFormat>
+	</ms:dataFormatInfo>
       </ms:dataFormats>
       <ms:characterEncodings>
-        <ms:characterEncoding>UTF-8</ms:characterEncoding>
+	<ms:characterEncoding>UTF-8</ms:characterEncoding>
       </ms:characterEncodings>
+      <ms:languages>
+	<ms:language>en</ms:language>
+      </ms:languages>
+      <ms:annotationTypes>
+	<ms:annotationTypeInfo>
+	  <ms:annotationType>http://w3id.org/meta-share/omtd-share/Token</ms:annotationType>
+	</ms:annotationTypeInfo>
+	<ms:annotationTypeInfo>
+	  <ms:annotationType>http://w3id.org/meta-share/omtd-share/PartOfSpeech</ms:annotationType>
+	</ms:annotationTypeInfo>
+	<ms:annotationTypeInfo>
+	  <ms:annotationType>http://w3id.org/meta-share/omtd-share/Lemma</ms:annotationType>
+	</ms:annotationTypeInfo>
+	<ms:annotationTypeInfo>
+	  <ms:annotationType>http://w3id.org/meta-share/omtd-share/NamedEntity</ms:annotationType>
+	</ms:annotationTypeInfo>
+	<ms:annotationTypeInfo>
+	  <ms:annotationType>http://w3id.org/meta-share/omtd-share/Topic</ms:annotationType>
+	</ms:annotationTypeInfo>
+	<ms:annotationTypeInfo>
+	  <ms:annotationType>http://w3id.org/meta-share/omtd-share/Chunk</ms:annotationType>
+	</ms:annotationTypeInfo>
+      </ms:annotationTypes>
     </ms:outputResourceInfo>
     <ms:componentCreationInfo>
       <ms:framework>other</ms:framework>

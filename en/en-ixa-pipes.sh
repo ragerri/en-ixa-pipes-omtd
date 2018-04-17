@@ -7,13 +7,13 @@ function run_file {
 	ifile=$1
 	ofile=$2
 	cat ${ifile} | \
-		./xmi2naf.py | \
-		java -jar ixa-pipe-tok-exec.jar tok -l en --inputkaf 2>/dev/null | \
-		java -jar ixa-pipe-pos-exec.jar tag -m pos.bin -lm lemma.bin 2>/dev/null | \
-		java -jar ixa-pipe-nerc-exec.jar tag -m nerc.bin 2>/dev/null 2>/dev/null | \
-		java -jar ixa-pipe-chunk-exec.jar tag -m chunk.bin 2>/dev/null | \
-		java -jar ixa-pipe-doc-exec.jar tag -m doc.bin 2>/dev/null | \
-		./naf2xmi.py > ${ofile}
+		/usr/bin/xmi2naf.py | \
+		java -jar /usr/bin/ixa-pipe-tok-exec.jar tok -l en --inputkaf 2>/dev/null | \
+		java -jar /usr/bin/ixa-pipe-pos-exec.jar tag -m /usr/bin/pos.bin -lm /usr/bin/lemma.bin 2>/dev/null | \
+		java -jar /usr/bin/ixa-pipe-nerc-exec.jar tag -m /usr/bin/nerc.bin 2>/dev/null 2>/dev/null | \
+		java -jar /usr/bin/ixa-pipe-chunk-exec.jar tag -m /usr/bin/chunk.bin 2>/dev/null | \
+		java -jar /usr/bin/ixa-pipe-doc-exec.jar tag -m /usr/bin/doc.bin 2>/dev/null | \
+		/usr/bin/naf2xmi.py > ${ofile}
 }
 
 declare -a POSITIONAL
@@ -44,8 +44,8 @@ if [ ! -d ${input} ]; then
 fi
 
 if [ ! -d ${output} ]; then
-        mkdir ${output}
-	echo "Creating --output directory"
+    mkdir ${output}
+    echo "Creating --output directory"
 fi
 
 declare -a IFILES
@@ -56,4 +56,4 @@ for i in "${IFILES[@]}"; do
 	ofile=${output}/$bfile
 	run_file ${ifile} ${ofile}
 done
-cp -f typesystem.xml ${output} >& /dev/null
+cp -f /usr/bin/typesystem.xml ${output} >& /dev/null

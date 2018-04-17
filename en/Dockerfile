@@ -79,13 +79,12 @@ RUN apt-get -q -y update && \
 
 ##################### ixa-pipes #######################################
 
-ADD http://search.maven.org/remotecontent?filepath=eus/ixa/ixa-pipe-tok/1.8.5/ixa-pipe-tok-1.8.5-exec.jar ixa-pipe-tok-exec.jar
-ADD http://search.maven.org/remotecontent?filepath=eus/ixa/ixa-pipe-pos/1.5.2/ixa-pipe-pos-1.5.2-exec.jar ixa-pipe-pos-exec.jar
-ADD http://search.maven.org/remotecontent?filepath=eus/ixa/ixa-pipe-nerc/1.6.1/ixa-pipe-nerc-1.6.1-exec.jar ixa-pipe-nerc-exec.jar
-ADD http://search.maven.org/remotecontent?filepath=eus/ixa/ixa-pipe-chunk/1.1.1/ixa-pipe-chunk-1.1.1-exec.jar ixa-pipe-chunk-exec.jar
-ADD http://search.maven.org/remotecontent?filepath=eus/ixa/ixa-pipe-doc/0.0.3/ixa-pipe-doc-0.0.3-exec.jar ixa-pipe-doc-exec.jar
+ADD http://search.maven.org/remotecontent?filepath=eus/ixa/ixa-pipe-tok/1.8.5/ixa-pipe-tok-1.8.5-exec.jar /usr/bin/ixa-pipe-tok-exec.jar
+ADD http://search.maven.org/remotecontent?filepath=eus/ixa/ixa-pipe-pos/1.5.2/ixa-pipe-pos-1.5.2-exec.jar /usr/bin/ixa-pipe-pos-exec.jar
+ADD http://search.maven.org/remotecontent?filepath=eus/ixa/ixa-pipe-nerc/1.6.1/ixa-pipe-nerc-1.6.1-exec.jar /usr/bin/ixa-pipe-nerc-exec.jar
+ADD http://search.maven.org/remotecontent?filepath=eus/ixa/ixa-pipe-chunk/1.1.1/ixa-pipe-chunk-1.1.1-exec.jar /usr/bin/ixa-pipe-chunk-exec.jar
+ADD http://search.maven.org/remotecontent?filepath=eus/ixa/ixa-pipe-doc/0.0.3/ixa-pipe-doc-0.0.3-exec.jar /usr/bin/ixa-pipe-doc-exec.jar
 COPY en-ixa-pipes.sh en-ixa-pipes.sh
-COPY en-ixa-pipes.sh /usr/bin/
 COPY naf2xmi.py naf2xmi.py
 COPY xmi2naf.py xmi2naf.py
 COPY typesystem.xml typesystem.xml
@@ -94,16 +93,28 @@ RUN chmod u+x en-ixa-pipes.sh
 RUN chmod u+x naf2xmi.py
 RUN chmod u+x xmi2naf.py
 
+#### copy every executable to /usr/bin ####
+
+COPY en-ixa-pipes.sh /usr/bin/en-ixa-pipes.sh
+COPY naf2xmi.py /usr/bin/naf2xmi.py
+COPY xmi2naf.py /usr/bin/xmi2naf.py
+COPY typesystem.xml /usr/bin/typesystem.xml
+
+RUN chmod u+x /usr/bin/en-ixa-pipes.sh
+RUN chmod u+x /usr/bin/naf2xmi.py
+RUN chmod u+x /usr/bin/xmi2naf.py
+
+
 RUN wget -c http://ixa2.si.ehu.es/ixa-pipes/models/en-ixa-pipes-models-1.1.1.tar.gz && \
     tar xvzf en-ixa-pipes-models-1.1.1.tar.gz && \
     rm en-ixa-pipes-models-1.1.1.tar.gz && \
     mv en-ixa-pipes-models-1.1.1/* . && \
     rmdir en-ixa-pipes-models-1.1.1/
 
-RUN mv en-pos-perceptron-autodict01-conll09.bin pos.bin && \
-    mv en-lemma-perceptron-conll09.bin lemma.bin && \
-    mv en-brown-conll03.bin nerc.bin && \
-    mv en-perceptron-conll00.bin chunk.bin && \
-    mv en-doc-maxent-large-movies.bin doc.bin
+RUN mv en-pos-perceptron-autodict01-conll09.bin /usr/bin/pos.bin && \
+    mv en-lemma-perceptron-conll09.bin /usr/bin/lemma.bin && \
+    mv en-brown-conll03.bin /usr/bin/nerc.bin && \
+    mv en-perceptron-conll00.bin /usr/bin/chunk.bin && \
+    mv en-doc-maxent-large-movies.bin /usr/bin/doc.bin
 
-CMD ["/en-ixa-pipes.sh"]
+CMD ["en-ixa-pipes.sh"]

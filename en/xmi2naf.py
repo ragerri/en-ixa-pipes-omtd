@@ -29,9 +29,17 @@ def search_text(xmi):
     rawtext = ""
     sofaid = "-1"
     sofatag = qname(ns, 'cas', 'Sofa')
-    for sofa in xmi.findall(sofatag):
-        #if sofa.get('sofaId') != '_InitialView':
-        #    continue
+    sofas = xmi.findall(sofatag)
+    if len(sofas) == 0:
+        return rawtext, sofaid
+    id = sofas[0].get(qname(ns, 'xmi', 'id'))
+    if id is not None:
+        sofaid = id
+    rawtext = sofas[0].get('sofaString')
+    for i in range(1, len(sofas)):
+        sofa = sofas[i]
+        if sofa.get('sofaId') != '_initialView':
+           continue
         id = sofa.get(qname(ns, 'xmi', 'id'))
         if id is not None:
             sofaid = id

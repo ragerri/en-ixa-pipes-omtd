@@ -4,20 +4,20 @@
     <ms:resourceType>component</ms:resourceType>
     <ms:identificationInfo>
       <ms:resourceNames>
-	<ms:resourceName>en-ixa-pipes-omtd</ms:resourceName>
+	<ms:resourceName>de-ixa-pipes-omtd</ms:resourceName>
       </ms:resourceNames>
       <ms:descriptions>
 	<ms:description>
-	  IXA pipes for English. It provides tokenizer, POS tagger, lemmatizer, NER tagger, Chunking and Document Classification. It reads from an input folder containing XMI documents and outputs the added annotations in XMI format to an output directory.
+	  IXA pipes for German. It provides tokenizer, POS tagger, lemmatizer and NER tagger. It reads from an input folder containing XMI documents and outputs the added annotations in XMI format to an output directory.
 	</ms:description>
       </ms:descriptions>
       <ms:resourceIdentifiers>
-	<ms:resourceIdentifier resourceIdentifierSchemeName="OMTD-docker">en-ixa-pipes.sh</ms:resourceIdentifier>
+	<ms:resourceIdentifier resourceIdentifierSchemeName="OMTD-docker">de-ixa-pipes.sh</ms:resourceIdentifier>
       </ms:resourceIdentifiers>
       <ms:public>true</ms:public>
     </ms:identificationInfo>
     <ms:versionInfo>
-      <ms:version>0.1.3</ms:version>
+      <ms:version>0.1.0</ms:version>
     </ms:versionInfo>
     <ms:contactInfo>
       <ms:contactPoint>https://github.com/ragerri/ixa-pipes-omtd</ms:contactPoint>
@@ -71,8 +71,8 @@
     <ms:distributionInfos>
       <ms:componentDistributionInfo>
 	<ms:componentDistributionForm>dockerImage</ms:componentDistributionForm>
-	<ms:distributionLocation>ragerri/en-ixa-pipes-omtd:0.1.3</ms:distributionLocation>
-	<ms:command>en-ixa-pipes.sh</ms:command>
+	<ms:distributionLocation>ragerri/de-ixa-pipes-omtd:0.1.0</ms:distributionLocation>
+	<ms:command>de-ixa-pipes.sh</ms:command>
 	<ms:operatingSystems>
 	  <ms:operatingSystem>linux</ms:operatingSystem>
 	</ms:operatingSystems>
@@ -97,7 +97,7 @@
 	<ms:characterEncoding>UTF-8</ms:characterEncoding>
       </ms:characterEncodings>
       <ms:languages>
-	<ms:language>en</ms:language>
+	<ms:language>de</ms:language>
       </ms:languages>
     </ms:inputContentResourceInfo>
     <ms:outputResourceInfo>
@@ -111,7 +111,7 @@
 	<ms:characterEncoding>UTF-8</ms:characterEncoding>
       </ms:characterEncodings>
       <ms:languages>
-	<ms:language>en</ms:language>
+	<ms:language>de</ms:language>
       </ms:languages>
       <ms:annotationTypes>
 	<ms:annotationTypeInfo>
@@ -125,12 +125,6 @@
 	</ms:annotationTypeInfo>
 	<ms:annotationTypeInfo>
 	  <ms:annotationType>http://w3id.org/meta-share/omtd-share/NamedEntity</ms:annotationType>
-	</ms:annotationTypeInfo>
-	<ms:annotationTypeInfo>
-	  <ms:annotationType>http://w3id.org/meta-share/omtd-share/Topic</ms:annotationType>
-	</ms:annotationTypeInfo>
-	<ms:annotationTypeInfo>
-	  <ms:annotationType>http://w3id.org/meta-share/omtd-share/Chunk</ms:annotationType>
 	</ms:annotationTypeInfo>
       </ms:annotationTypes>
     </ms:outputResourceInfo>

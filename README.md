@@ -1,5 +1,5 @@
 # ixa-pipes-omtd
-IXA pipes docker for the OpenMinTeD platform
+IXA pipes dockers for the OpenMinTeD platform
 
 To build a docker image go to the directory of the language of interest and run:
 
@@ -7,7 +7,7 @@ To build a docker image go to the directory of the language of interest and run:
 
 To get the docker image from docker hub:
 
-````docker pull ragerri/en-ixa-pipes-omtd:0.0.1````
+````docker pull ragerri/en-ixa-pipes-omtd:0.1.3````
 
 To run the docker image for any language, use the following command:
 
@@ -19,4 +19,12 @@ it will take every XMI document in the `<hostInputPath>` directory and leave the
 For example, if your input directory is `/home/user/corpus_in` and you want
 the output in `/home/user/corpus_out `, run the following command:
 
-````docker run -v /home/user/corpus_in:/corpus_in -v /home/user/corpus_out:/corpus_out -i ragerri/en-ixa-pipes-omtd:0.0.1 /en-ixa-pipes.sh --input corpus_in --output corpus_out````
+````docker run -v /home/user/corpus_in:/corpus_in -v /home/user/corpus_out:/corpus_out -i ragerri/en-ixa-pipes-omtd:0.1.3 en-ixa-pipes.sh --input corpus_in --output corpus_out````
+
+````shell
+Rodrigo Agerri
+IXA NLP Group
+University of the Basque Country (UPV/EHU)
+rodrigo.agerri@ehu.eus
+````
+

@@ -1,5 +1,4 @@
-# ixa-pipes-omtd
-IXA pipes dockers for the OpenMinTeD platform
+# ixa-pipes-omtd: IXA pipes dockers for the OpenMinTeD platform
 
 To build a docker image go to the directory of the language of interest and run:
 
@@ -21,10 +20,11 @@ the output in `/home/user/corpus_out `, run the following command:
 
 ````docker run -v /home/user/corpus_in:/corpus_in -v /home/user/corpus_out:/corpus_out -i ragerri/en-ixa-pipes-omtd:0.1.3 en-ixa-pipes.sh --input corpus_in --output corpus_out````
 
+## Contact Information
+
 ````shell
 Rodrigo Agerri
 IXA NLP Group
 University of the Basque Country (UPV/EHU)
 rodrigo.agerri@ehu.eus
 ````
-

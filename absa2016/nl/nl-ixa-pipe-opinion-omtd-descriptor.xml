@@ -129,7 +129,7 @@
 	  <ms:annotationType>http://w3id.org/meta-share/omtd-share/Polarity</ms:annotationType>
 	</ms:annotationTypeInfo>
 	<ms:annotationTypeInfo>
-	  <ms:annotationType>http://w3id.org/meta-share/omtd-share/SentimentAnalysis</ms:annotationType>
+	  <ms:annotationType>http://w3id.org/meta-share/omtd-share/Sentiment</ms:annotationType>
 	</ms:annotationTypeInfo>
       </ms:annotationTypes>
     </ms:outputResourceInfo>

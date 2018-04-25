@@ -54,6 +54,23 @@
       </features>
 	</typeDescription>
 	<typeDescription>
+	  <name>ixa2.si.ehu.es.ixa-pipes.types.opinion</name>
+      <description/>
+      <supertypeName>uima.tcas.Annotation</supertypeName>
+	  <features>
+        <featureDescription>
+          <name>polarity</name>
+          <description/>
+          <rangeTypeName>uima.cas.String</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>aspect</name>
+          <description/>
+          <rangeTypeName>uima.cas.String</rangeTypeName>
+        </featureDescription>
+      </features>
+	</typeDescription>
+	<typeDescription>
 	  <name>ixa2.si.ehu.es.ixa-pipes.types.chunk</name>
       <description/>
       <supertypeName>uima.tcas.Annotation</supertypeName>

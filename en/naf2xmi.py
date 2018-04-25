@@ -220,6 +220,27 @@ def ner(tree, pstate, out):
         tcas.set('end', str(e))
         tcas.set('type', etype)
 
+def opinions(tree, pstate, out):
+    opinions = tree.find("opinions")
+    if opinions is None:
+        return
+    for opinion in opinions.findall("opinion"):
+        polarity = "unknown"
+        aspect = "unknown"
+        op_expr = opinion.find("opinion_expression")
+        if op_expr is not None:
+            polarity = op_expr.get('polarity', polarity)
+            aspect = op_expr.get('sentiment_product_feature', aspect)
+        tcas = ET.SubElement(out, pstate.qname('ixatypes', 'opinion'))
+        tids, _ = targets(opinion.find("opinion_target"))
+        b, e = pstate.oRange(tids)
+        tcas.set(pstate.qname('xmi', 'id'), pstate.next_id())
+        tcas.set('sofa', pstate.sofaId)
+        tcas.set('begin', str(b))
+        tcas.set('end', str(e))
+        tcas.set('polarity', polarity)
+        tcas.set('aspect', aspect)
+
 def chunk(tree, pstate, out):
     chunks = tree.find("chunks")
     if chunks is None:
@@ -283,6 +304,7 @@ def main():
         tok(naf, pstate, oroot)
         pos(naf, pstate, oroot)
         ner(naf, pstate, oroot)
+        opinions(naf, pstate, oroot)
         chunk(naf, pstate, oroot)
         doc(naf, pstate, oroot)
         view(pstate, oroot)

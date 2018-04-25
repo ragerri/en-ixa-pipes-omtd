@@ -4,15 +4,15 @@
     <ms:resourceType>component</ms:resourceType>
     <ms:identificationInfo>
       <ms:resourceNames>
-	<ms:resourceName>en-ixa-pipe-opinion-omtd</ms:resourceName>
+	<ms:resourceName>fr-ixa-pipe-opinion-omtd</ms:resourceName>
       </ms:resourceNames>
       <ms:descriptions>
 	<ms:description>
-	  ixa-pipe-opinion for English.  It performs Aspect Based Sentiment Analysis (ABSA) trained on the Restaurant reviews dataset from ABSA 2016. It reads from an input folder containing XMI documents and outputs the added annotations in XMI format to an output directory.
+	  ixa-pipe-opinion for French.  It performs Aspect Based Sentiment Analysis (ABSA) trained on the Restaurant reviews dataset from ABSA 2016. It reads from an input folder containing XMI documents and outputs the added annotations in XMI format to an output directory.
 	</ms:description>
       </ms:descriptions>
       <ms:resourceIdentifiers>
-	<ms:resourceIdentifier resourceIdentifierSchemeName="OMTD-docker">en-ixa-pipe-opinion.sh</ms:resourceIdentifier>
+	<ms:resourceIdentifier resourceIdentifierSchemeName="OMTD-docker">fr-ixa-pipe-opinion.sh</ms:resourceIdentifier>
       </ms:resourceIdentifiers>
       <ms:public>false</ms:public>
     </ms:identificationInfo>
@@ -46,8 +46,8 @@
     <ms:distributionInfos>
       <ms:componentDistributionInfo>
 	<ms:componentDistributionForm>dockerImage</ms:componentDistributionForm>
-	<ms:distributionLocation>ragerri/en-ixa-pipe-opinion-omtd:0.1.0</ms:distributionLocation>
-	<ms:command>en-ixa-pipe-opinion.sh</ms:command>
+	<ms:distributionLocation>ragerri/fr-ixa-pipe-opinion-omtd:0.1.0</ms:distributionLocation>
+	<ms:command>fr-ixa-pipe-opinion.sh</ms:command>
 	<ms:operatingSystems>
 	  <ms:operatingSystem>linux</ms:operatingSystem>
 	</ms:operatingSystems>
@@ -72,7 +72,7 @@
 	<ms:characterEncoding>UTF-8</ms:characterEncoding>
       </ms:characterEncodings>
       <ms:languages>
-	<ms:language>en</ms:language>
+	<ms:language>fr</ms:language>
       </ms:languages>
     </ms:inputContentResourceInfo>
     <ms:outputResourceInfo>
@@ -86,7 +86,7 @@
 	<ms:characterEncoding>UTF-8</ms:characterEncoding>
       </ms:characterEncodings>
       <ms:languages>
-	<ms:language>en</ms:language>
+	<ms:language>fr</ms:language>
       </ms:languages>
       <ms:annotationTypes>
 	<ms:annotationTypeInfo>

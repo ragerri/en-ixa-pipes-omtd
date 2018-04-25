@@ -14,7 +14,7 @@
       <ms:resourceIdentifiers>
 	<ms:resourceIdentifier resourceIdentifierSchemeName="OMTD-docker">fr-ixa-pipes.sh</ms:resourceIdentifier>
       </ms:resourceIdentifiers>
-      <ms:public>true</ms:public>
+      <ms:public>false</ms:public>
     </ms:identificationInfo>
     <ms:versionInfo>
       <ms:version>0.1.0</ms:version>
@@ -39,6 +39,33 @@
         </ms:publicationIdentifiers>
       </ms:resourceDocumentationInfo>
     </ms:resourceDocumentations>
+    <ms:resourceCreationInfo>
+      <ms:resourceCreators>
+	<ms:resourceCreator>
+	  <ms:actorType>person</ms:actorType>
+	  <ms:relatedPerson>
+	    <ms:surname>Agerri</ms:surname>
+	    <ms:givenName>Rodrigo</ms:givenName>
+	    <ms:communicationInfo>
+	      <ms:emails>
+		<ms:email>rodrigo.agerri@ehu.eus</ms:email>
+	      </ms:emails>
+	    </ms:communicationInfo>
+	    <ms:affiliation>
+	      <ms:position>Researcher</ms:position>
+	      <ms:affiliatedOrganization>
+		<ms:organizationNames>
+		  <ms:organizationName lang="en">University of the Basque Country UPV/EHU</ms:organizationName>
+		</ms:organizationNames>
+		<ms:departmentNames>
+		  <ms:departmentName lang="en">IXA NLP Group</ms:departmentName>
+		</ms:departmentNames>
+	      </ms:affiliatedOrganization>
+	    </ms:affiliation>
+	  </ms:relatedPerson>
+	</ms:resourceCreator>
+      </ms:resourceCreators>
+    </ms:resourceCreationInfo>
     <ms:application>false</ms:application>
     <ms:functionInfo>
       <ms:function>http://w3id.org/meta-share/omtd-share/Annotator</ms:function>

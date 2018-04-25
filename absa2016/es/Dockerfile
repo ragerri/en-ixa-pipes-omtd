@@ -110,7 +110,7 @@ RUN wget -c http://ixa2.si.ehu.es/ixa-pipes/models/es-ixa-pipes-models-1.1.1.tar
     rm -r es-ixa-pipes-models-1.1.1/
 
 RUN mv es-pos-perceptron-autodict01-ancora-2.0.bin /usr/bin/pos.bin && \
-    mv es-lemma-perceptron-ancora-2.0.bin /usr/bin/lemma.bin && \
+    mv es-lemma-perceptron-ancora-2.0.bin /usr/bin/lemma.bin
 
 RUN wget -c http://ixa2.si.ehu.es/ixa-pipes/models/es-absa-models-1.0.0.tar.gz && \
     tar xvzf es-absa-models-1.0.0.tar.gz && \
@@ -119,6 +119,6 @@ RUN wget -c http://ixa2.si.ehu.es/ixa-pipes/models/es-absa-models-1.0.0.tar.gz &
     rmdir es-absa-models-1.0.0/
 
 RUN mv es-ote-aspects-clusters-restaurants-2016.bin /usr/bin/ote.bin && \
-    mv es-polarity-restaurants-2016.bin /usr/bin/polarity.bin && \
+    mv es-polarity-restaurants-2016.bin /usr/bin/polarity.bin
 
 CMD ["es-ixa-pipe-opinion.sh"]

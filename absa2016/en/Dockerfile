@@ -105,12 +105,9 @@ RUN chmod u+x /usr/bin/xmi2naf.py
 RUN wget -c http://ixa2.si.ehu.es/ixa-pipes/models/en-ixa-pipes-models-1.1.1.tar.gz && \
     tar xvzf en-ixa-pipes-models-1.1.1.tar.gz && \
     rm en-ixa-pipes-models-1.1.1.tar.gz && \
-    mv en-ixa-pipes-models-1.1.1/en-pos-perceptron-autodict01-conll09.bin . && \
-    mv en-ixa-pipes-models-1.1.1/en-lemma-perceptron-conll09.bin . && \
+    mv en-ixa-pipes-models-1.1.1/en-pos-perceptron-autodict01-conll09.bin /usr/bin/pos.bin && \
+    mv en-ixa-pipes-models-1.1.1/en-lemma-perceptron-conll09.bin /usr/bin/lemma.bin && \
     rm -r en-ixa-pipes-models-1.1.1/
-
-RUN mv en-pos-perceptron-autodict01-conll09.bin /usr/bin/pos.bin && \
-    mv en-lemma-perceptron-conll09.bin /usr/bin/lemma.bin && \
 
 RUN wget -c http://ixa2.si.ehu.es/ixa-pipes/models/en-absa-models-1.0.0.tar.gz && \
     tar xvzf en-absa-models-1.0.0.tar.gz && \
@@ -119,6 +116,6 @@ RUN wget -c http://ixa2.si.ehu.es/ixa-pipes/models/en-absa-models-1.0.0.tar.gz &
     rmdir en-absa-models-1.0.0/
 
 RUN mv en-ote-aspects-clusters-restaurants-2016.bin /usr/bin/ote.bin && \
-    mv en-polarity-restaurants-2016.bin /usr/bin/polarity.bin && \
+    mv en-polarity-restaurants-2016.bin /usr/bin/polarity.bin
 
 CMD ["en-ixa-pipe-opinion.sh"]

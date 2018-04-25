@@ -10,7 +10,7 @@ function run_file {
 		/usr/bin/xmi2naf.py | \
 		java -jar /usr/bin/ixa-pipe-tok-exec.jar tok -l es --inputkaf 2>/dev/null | \
 		java -jar /usr/bin/ixa-pipe-pos-exec.jar tag -m /usr/bin/pos.bin -lm /usr/bin/lemma.bin 2>/dev/null | \
-		java -jar /usr/bin/ixa-pipe-opinion-exec.jar tag -t /usr/bin/ote.bin -p /usr/bin/polarity.bin 2>/dev/null | \
+		java -jar /usr/bin/ixa-pipe-opinion-exec.jar absa -t /usr/bin/ote.bin -p /usr/bin/polarity.bin 2>/dev/null | \
 		/usr/bin/naf2xmi.py > ${ofile}
 }
 

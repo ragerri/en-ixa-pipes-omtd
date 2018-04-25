@@ -110,7 +110,7 @@ RUN wget -c http://ixa2.si.ehu.es/ixa-pipes/models/nl-ixa-pipes-models-1.1.1.tar
     rm -r nl-ixa-pipes-models-1.1.1/
 
 RUN mv nl-pos-perceptron-autodict01-alpino.bin /usr/bin/pos.bin && \
-    mv nl-lemma-perceptron-alpino.bin /usr/bin/lemma.bin && \
+    mv nl-lemma-perceptron-alpino.bin /usr/bin/lemma.bin
 
 RUN wget -c http://ixa2.si.ehu.es/ixa-pipes/models/nl-absa-models-1.0.0.tar.gz && \
     tar xvzf nl-absa-models-1.0.0.tar.gz && \
@@ -119,6 +119,6 @@ RUN wget -c http://ixa2.si.ehu.es/ixa-pipes/models/nl-absa-models-1.0.0.tar.gz &
     rmdir nl-absa-models-1.0.0/
 
 RUN mv nl-ote-aspects-clusters-restaurants-2016.bin /usr/bin/ote.bin && \
-    mv nl-polarity-restaurants-2016.bin /usr/bin/polarity.bin && \
+    mv nl-polarity-restaurants-2016.bin /usr/bin/polarity.bin
 
 CMD ["nl-ixa-pipe-opinion.sh"]

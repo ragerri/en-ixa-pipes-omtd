@@ -110,7 +110,7 @@ RUN wget -c http://ixa2.si.ehu.es/ixa-pipes/models/fr-ixa-pipes-models-1.1.1.tar
     rm -r fr-ixa-pipes-models-1.1.1/
 
 RUN mv fr-pos-perceptron-autodict01-sequoia.bin /usr/bin/pos.bin && \
-    mv fr-lemma-perceptron-sequoia.bin /usr/bin/lemma.bin && \
+    mv fr-lemma-perceptron-sequoia.bin /usr/bin/lemma.bin
 
 RUN wget -c http://ixa2.si.ehu.es/ixa-pipes/models/fr-absa-models-1.0.0.tar.gz && \
     tar xvzf fr-absa-models-1.0.0.tar.gz && \
@@ -119,6 +119,6 @@ RUN wget -c http://ixa2.si.ehu.es/ixa-pipes/models/fr-absa-models-1.0.0.tar.gz &
     rmdir fr-absa-models-1.0.0/
 
 RUN mv fr-ote-aspects-clusters-restaurants-2016.bin /usr/bin/ote.bin && \
-    mv fr-polarity-restaurants-2016.bin /usr/bin/polarity.bin && \
+    mv fr-polarity-restaurants-2016.bin /usr/bin/polarity.bin
 
 CMD ["fr-ixa-pipe-opinion.sh"]
